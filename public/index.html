@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Управление Пользователями</title>
+     <style>
+          body {
+               font-family: Arial, sans-serif;
+               background-color: #f4f4f4;
+               margin: 0;
+               padding: 20px;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               height: 100vh;
+          }
+
+          .container {
+               background-color: #fff;
+               padding: 20px;
+               border-radius: 8px;
+               box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+               text-align: center;
+          }
+
+          h1 {
+               color: #333;
+          }
+
+          .button {
+               background-color: #0d49d7;
+               color: #fff;
+               border: none;
+               padding: 10px 20px;
+               cursor: pointer;
+               border-radius: 5px;
+               font-size: 16px;
+          }
+
+          .button:hover {
+               background-color: #0a3b9e;
+          }
+     </style>
+</head>
+
+<body>
+     <script>
+          const form = document.getElementById('userForm');
+          form.addEventListener('submit', async (e) => {
+               e.preventDefault();
+
+               const formData = new FormData(form);
+               const userData = {
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    age: formData.get('age')
+               };
+
+               try {
+                    const response = await fetch('/api/users/create', {
+                         method: 'POST',
+                         headers: {
+                              'Content-Type': 'application/json'
+                         },
+                         body: JSON.stringify(userData)
+                    });
+
+                    const result = await response.json();
+                    if (response.ok) {
+                         alert('Пользователь успешно создан!');
+                    } else {
+                         alert('Ошибка: ' + result.message);
+                    }
+               } catch (error) {
+                    console.error('Ошибка:', error);
+               }
+          });
+     </script>
+
+</body>
+
+</html>
