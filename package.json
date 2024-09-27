@@ -7,8 +7,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node bot.js",
-    "dev": "nodemon bot.js"
+    "dev": "nodemon bot.js",
+    "start": "pm2 start bot.js"
+
   },
   "keywords": [],
   "author": "Your Name",
@@ -23,6 +24,7 @@
     "mongoose": "^8.6.3",
     "node-telegram-bot-api": "^0.66.0",
     "node-webcam": "^0.8.2",
+    "pm2": "^5.4.2",
     "sudo-prompt": "^9.2.1"
   },
   "devDependencies": {
